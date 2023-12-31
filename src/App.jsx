@@ -1,13 +1,34 @@
-import { Button } from './components/ui/button'
+import SignIn from './Routes/SignIn'
+import SignUp from './Routes/SignUp'
+import Home from './Routes/Home'
+import { createBrowserRouter } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
+import AuthContext from './Context/AuthContext'
+import Protected from './Routes/Protected'
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: (
+        <Protected>
+          <Home />
+        </Protected>
+      ),
+    },
+    {
+      path: '/sign-in',
+      element: <SignIn />,
+    },
+    {
+      path: '/sign-up',
+      element: <SignUp />,
+    },
+  ])
   return (
-    <>
-      <div>
-        <div>Test Shadcn UI</div>
-        <Button>Click me</Button>
-      </div>
-    </>
+    <AuthContext>
+      <RouterProvider router={router} />
+    </AuthContext>
   )
 }
 
