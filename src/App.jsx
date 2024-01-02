@@ -5,6 +5,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router-dom'
 import AuthContext from './Context/AuthContext'
 import Protected from './Routes/Protected'
+import Authentification from './pages/authentification'
 
 function App() {
   const router = createBrowserRouter([
@@ -15,6 +16,10 @@ function App() {
           <Home />
         </Protected>
       ),
+    },
+    {
+      path: '/authentification',
+      element: <Authentification />,
     },
     {
       path: '/sign-in',

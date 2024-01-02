@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
+import { Icons } from '@/components/icons'
 
-const SignIn = () => {
+const SignIn = ({ isLoading }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -22,28 +26,50 @@ const SignIn = () => {
     })
   const handleSignIn = async (e) => {
     e.preventDefault()
-    alert('Email: ' + email + 'Password: ' + password)
+    alert('Vérifier votre email et mot de passe ou Inscrivez-vous !')
   }
   return (
     <div>
-      <h1>This is the sign in page</h1>
       <form action="#">
-        <input
-          name="email"
-          type="email"
-          placeholder="E-mail"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          name="pass"
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div className="container-buttons">
-          <button type="submit" onClick={(e) => handleSignIn(e)}>
+        <div className="grid gap-2">
+          <div className="grid gap-1">
+            <Label className="sr-only" htmlFor="email">
+              Email
+            </Label>
+            <Input
+              name="email"
+              type="email"
+              placeholder="E-mail"
+              autoCapitalize="none"
+              autoComplete="email"
+              autoCorrect="off"
+              disabled={isLoading}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Label className="sr-only" htmlFor="password">
+              Password
+            </Label>
+            <Input
+              name="pass"
+              type="password"
+              placeholder="Password"
+              autoCapitalize="none"
+              autoComplete="password"
+              autoCorrect="off"
+              disabled={isLoading}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Button
+            disabled={isLoading}
+            type="submit"
+            onClick={(e) => handleSignIn(e)}
+          >
+            {isLoading && (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            )}
             Sign in
-          </button>
+          </Button>
         </div>
       </form>
     </div>

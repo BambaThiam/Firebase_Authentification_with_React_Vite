@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import { getAuth, signOut } from 'firebase/auth'
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
   return (
     <div>
       <h1>This is the home page</h1>
-      <button onClick={() => handleSignOut()}>Log out</button>
+      <Button onClick={() => handleSignOut()}>Log out</Button>
     </div>
   )
 }
