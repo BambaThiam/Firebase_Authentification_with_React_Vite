@@ -5,12 +5,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
+import { app } from '@/firebase/init_Firebase'
 
 const SignIn = ({ isLoading }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const auth = getAuth()
+  const auth = getAuth(app)
   const navigate = useNavigate()
 
   signInWithEmailAndPassword(auth, email, password)
