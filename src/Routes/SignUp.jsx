@@ -13,23 +13,23 @@ const SignUp = ({ isLoading }) => {
   const [password, setPassword] = useState('')
 
   const auth = getAuth(app)
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((user) => {
-      // Signed in
-      // Success...
-      console.log(user)
-      //...
-      // ...
-    })
-    .catch((error) => {
-      //   const errorCode = error.code
-      //   const errorMessage = error.message
-      // Error
-      console.log(error)
-    })
   const handleSignUp = async (e) => {
     e.preventDefault()
-    alert('Compte crée avec succes. Connectez-vous avec le Sign In !')
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        // Signed in
+        // Success...
+        console.log(user)
+        alert('Compte crée avec succes. Connectez-vous avec le Sign In !')
+        //...
+        // ...
+      })
+      .catch((error) => {
+        //   const errorCode = error.code
+        //   const errorMessage = error.message
+        // Error
+        console.log(error)
+      })
   }
 
   return (
